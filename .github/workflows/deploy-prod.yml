@@ -21,20 +21,19 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
-          aws-region: us-east-1
+          aws-region: eu-central-1
 
       - name: Initialize Terraform
         run: |
           terraform init \
                 -backend-config="bucket=terraform-state-prod-mw240794" \
                 -backend-config="key=s3-bucket/terraform.tfstate" \
-                -backend-config="region=us-east-1" \
+                -backend-config="region=eu-central-1" \
 
-      - name: Select or Create Workspace
-        run: terraform workspace select prod || terraform workspace new prod
+
 
       - name: Plan Terraform Changes
-        run: terraform plan -var="environment=prod" -var="aws_profile=default" -var="s3_bucket_name=my-prod-bucket"
+        run: terraform plan -var="environment=prod" -var="aws_profile=default" -var="s3_bucket_name=my-prod-bucket-mw240794"
 
       - name: Apply Terraform Changes
-        run: terraform apply -auto-approve -var="environment=prod" -var="aws_profile=default" -var="s3_bucket_name=my-prod-bucket"
+        run: terraform apply -auto-approve -var="environment=prod" -var="aws_profile=default" -var="s3_bucket_name=my-prod-bucket-mw240794"

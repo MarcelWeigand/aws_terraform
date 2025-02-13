@@ -33,14 +33,12 @@ jobs:
             -backend-config="key=s3-bucket/terraform.tfstate" \
             -backend-config="region=us-east-1" \
 
-      - name: Select or Create Workspace
-        run: |
-          terraform workspace select dev || terraform workspace new dev
+
 
       - name: Plan Terraform Changes
         run: |
-          terraform plan -var="environment=dev" -var="aws_profile=default" -var="s3_bucket_name=my-dev-bucket"
+          terraform plan -var="environment=dev" -var="aws_profile=default" -var="s3_bucket_name=my-dev-bucket-mw240794"
 
       - name: Apply Terraform Changes
         run: |
-          terraform apply -auto-approve -var="environment=dev" -var="aws_profile=default" -var="s3_bucket_name=my-dev-bucket"
+          terraform apply -auto-approve -var="environment=dev" -var="aws_profile=default" -var="s3_bucket_name=my-dev-bucket-mw240794"

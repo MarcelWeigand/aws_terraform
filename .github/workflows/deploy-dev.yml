@@ -28,7 +28,10 @@ jobs:
 
       - name: Initialize Terraform
         run: |
-          terraform init
+          terraform init \
+            -backend-config="bucket=terraform-state-dev-mw240794" \
+            -backend-config="key=s3-bucket/terraform.tfstate" \
+            -backend-config="region=us-east-1" \
 
       - name: Select or Create Workspace
         run: |

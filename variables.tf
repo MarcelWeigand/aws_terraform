@@ -9,12 +9,12 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "aws_profile" {
-  description = "AWS profile"
+variable "s3_bucket_name" {
+  description = "S3 bucket name"
   type        = string
 }
 
-variable "s3_bucket_name" {
-  description = "S3 bucket name"
+variable "tag" {
+  description = "Tag for the bucket"
   type        = string
 }

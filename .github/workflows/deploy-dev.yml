@@ -37,8 +37,8 @@ jobs:
 
       - name: Plan Terraform Changes
         run: |
-          terraform plan -var="environment=dev" -var="aws_profile=default" -var="s3_bucket_name=my-dev-bucket-mw240794"
+          terraform plan -var-file="dev.tfvars"
 
       - name: Apply Terraform Changes
         run: |
-          terraform apply -auto-approve -var="environment=dev" -var="aws_profile=default" -var="s3_bucket_name=my-dev-bucket-mw240794"
+          terraform apply -auto-approve -var-file="dev.tfvars"

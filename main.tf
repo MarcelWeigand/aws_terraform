@@ -3,8 +3,7 @@ resource "aws_s3_bucket" "example" {
 
 
   tags = {
-    Name        = var.s3_bucket_name
-    Environment = var.environment
+    Name = var.s3_bucket_name
     Tag = var.tag
     Account_id = local.account_id
   }

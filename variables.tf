@@ -14,6 +14,11 @@ variable "s3_bucket_name" {
   type        = string
 }
 
+variable "lambda_function_name" {
+  description = "Name of the Lambda function"
+  type        = string
+}
+
 variable "tag" {
   description = "Tag for the bucket"
   type        = string

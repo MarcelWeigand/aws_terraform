@@ -1,0 +1,29 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Enter the release version (e.g., v1.0.0)"
+        required: true
+        type: string
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # This gives GITHUB_TOKEN permission to create a release
+
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ inputs.release_version }} \
+          --title "Release ${{ inputs.release_version }}" \
+          --notes "This release was manually created after successful dev deployment."
